@@ -1,5 +1,6 @@
 # README – Bathymetry-Based Tidal Modeling Workflow
 Autor: Arcelia Haylem Portilla Diaz
+https://doi.org/10.5281/zenodo.21688143
 ## Overview
 
 This repository contains a computational routine designed to process bathymetric data (with geographic coordinates) and run tidal simulations using the TPXOv2 model. The workflow was originally developed to operate in a cloud-based environment using Google Colab, with integration into personal storage and geospatial services.
