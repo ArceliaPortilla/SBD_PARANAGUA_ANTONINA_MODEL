@@ -5653,16 +5653,16 @@ class SDBPipeline:
             self.visualizer.plot_models_grid(self.df_comparison, n_cols=2)
 
         # 2. Comparación de métricas
-        print("\n📊 2. Comparación de métricas...")
+        print("\n 2. Comparación de métricas...")
         results_df = pd.DataFrame(self.results_models).T
         self.visualizer.plot_model_comparison(results_df)
 
         # 3. Distribución de errores
-        print("\n📊 3. Distribución de errores...")
+        print("\n 3. Distribución de errores...")
         self.visualizer.plot_error_distributions(self.df_comparison)
 
         # 4. ANÁLISIS POR RANGOS DE PROFUNDIDAD (NUEVO)
-        print("\n📊 4. Análisis por rangos de profundidad...")
+        print("\n 4. Análisis por rangos de profundidad...")
         try:
             metrics_by_range, range_labels = self.visualizer.plot_depth_by_ranges(
                 self.df_comparison,
@@ -5700,13 +5700,13 @@ class SDBPipeline:
                 if self.config.get('save_results', False):
                     range_path = os.path.join(self.config['output_dir'], 'analisis_por_rangos.csv')
                     df_range.to_csv(range_path, index=False)
-                    print(f"💾 Análisis por rangos guardado: {range_path}")
+                    print(f" Análisis por rangos guardado: {range_path}")
 
         except Exception as e:
-            print(f"⚠️ Error en análisis por rangos: {e}")
+            print(f" Error en análisis por rangos: {e}")
 
         # 5. Mapas de profundidad
-        print("\n🗺️ 5. Generando mapas de profundidad...")
+        print("\n 5. Generando mapas de profundidad...")
         if self.config.get('save_results', False):
             maps_dir = os.path.join(self.config['output_dir'], 'mapas')
             os.makedirs(maps_dir, exist_ok=True)
@@ -5716,7 +5716,7 @@ class SDBPipeline:
 
         # 6. Gráfico TVU (si está habilitado)
         if self.config.get('enable_tvu_analysis', True) and hasattr(self, 'tvu_results') and self.tvu_results:
-            print("\n📊 6. Gráfico de cumplimiento TVU...")
+            print("\n 6. Gráfico de cumplimiento TVU...")
             try:
                 first_order = list(self.tvu_results.keys())[0]
                 df_tvu = self.tvu_results[first_order]['df_tvu']
@@ -5731,7 +5731,7 @@ class SDBPipeline:
                     order=first_order
                 )
             except Exception as e:
-                print(f"⚠️ Error en gráfico TVU: {e}")
+                print(f" Error en gráfico TVU: {e}")
 
     def _step7_perfiles(self):
         """Paso 7: Perfiles batimétricos AUTOMÁTICOS que atraviesan TODO el área"""
@@ -6703,7 +6703,7 @@ if __name__ == "__main__":
     # 1. ENTRENAMIENTO EN PARANAGUÁ (CON GMM)
     # ====================================================
     print("=" * 80)
-    print("🚀 FASE 1: ENTRENAMIENTO EN PARANAGUÁ (CON GMM)")
+    print(" FASE 1: ENTRENAMIENTO EN PARANAGUÁ (CON GMM)")
     print("=" * 80)
 
     CONFIG_PARANAGUA = CONFIG_BASE.copy()
@@ -6715,7 +6715,7 @@ if __name__ == "__main__":
         'output_dir': '/content/drive/MyDrive/Tesis_Final/Resultados_Paranagua_CON_GMM',
     })
 
-    print("\n📊 Entrenando modelo en Paranaguá...")
+    print("\n Entrenando modelo en Paranaguá...")
     pipeline_paranagua = SDBPipeline(CONFIG_PARANAGUA)
     resultados_paranagua = pipeline_paranagua.run()
 
@@ -6725,7 +6725,7 @@ if __name__ == "__main__":
 
     # Guardar modelos entrenados
     import joblib
-    print(f"\n💾 Guardando modelos en: {modelos_path}")
+    print(f"\n Guardando modelos en: {modelos_path}")
     for model_name, model in pipeline_paranagua.models.items():
         joblib.dump(model, os.path.join(modelos_path, f'modelo_{model_name}.pkl'))
         print(f"   • {model_name} guardado")
@@ -6739,7 +6739,7 @@ if __name__ == "__main__":
     # 2. ENTRENAMIENTO EN PARANAGUÁ (SIN GMM) - OPCIONAL
     # ====================================================
     print("\n" + "=" * 80)
-    print("🚀 FASE 2: ENTRENAMIENTO EN PARANAGUÁ (SIN GMM)")
+    print(" FASE 2: ENTRENAMIENTO EN PARANAGUÁ (SIN GMM)")
     print("=" * 80)
 
     CONFIG_PARANAGUA_SIN_GMM = CONFIG_BASE.copy()
@@ -6751,7 +6751,7 @@ if __name__ == "__main__":
         'output_dir': '/content/drive/MyDrive/Tesis_Final/Resultados_Paranagua_SIN_GMM',
     })
 
-    print("\n📊 Entrenando modelo en Paranaguá (SIN GMM)...")
+    print("\n Entrenando modelo en Paranaguá (SIN GMM)...")
     pipeline_paranagua_sin_gmm = SDBPipeline(CONFIG_PARANAGUA_SIN_GMM)
     resultados_paranagua_sin_gmm = pipeline_paranagua_sin_gmm.run()
 
@@ -6767,7 +6767,7 @@ if __name__ == "__main__":
     # 3. VALIDACIÓN CRUZADA: Paranaguá → Antonina (CON GMM)
     # ====================================================
     print("\n" + "=" * 80)
-    print("🚀 FASE 3: VALIDACIÓN CRUZADA - Paranaguá → Antonina (CON GMM)")
+    print(" FASE 3: VALIDACIÓN CRUZADA - Paranaguá → Antonina (CON GMM)")
     print("=" * 80)
 
     CONFIG_VALIDACION_CON_GMM = CONFIG_BASE.copy()
@@ -6794,7 +6794,7 @@ if __name__ == "__main__":
     # 4. VALIDACIÓN CRUZADA: Paranaguá → Antonina (SIN GMM)
     # ====================================================
     print("\n" + "=" * 80)
-    print("🚀 FASE 4: VALIDACIÓN CRUZADA - Paranaguá → Antonina (SIN GMM)")
+    print(" FASE 4: VALIDACIÓN CRUZADA - Paranaguá → Antonina (SIN GMM)")
     print("=" * 80)
 
     CONFIG_VALIDACION_SIN_GMM = CONFIG_BASE.copy()
@@ -6813,7 +6813,7 @@ if __name__ == "__main__":
                       datetime.now().strftime('%Y%m%d_%H%M%S'),
     })
 
-    print("\n📊 Validando modelo de Paranaguá (SIN GMM) en Antonina...")
+    print("\n Validando modelo de Paranaguá (SIN GMM) en Antonina...")
     pipeline_validacion_sin = SDBPipeline(CONFIG_VALIDACION_SIN_GMM)
     resultados_validacion_sin = pipeline_validacion_sin.run()
 
@@ -6821,7 +6821,7 @@ if __name__ == "__main__":
     # 5. COMPARACIÓN DE RESULTADOS
     # ====================================================
     print("\n" + "=" * 80)
-    print("📊 COMPARACIÓN FINAL DE RESULTADOS")
+    print(" COMPARACIÓN FINAL DE RESULTADOS")
     print("=" * 80)
 
     # Tabla comparativa
@@ -6880,18 +6880,18 @@ if __name__ == "__main__":
     # Crear DataFrame comparativo
     df_comparacion = pd.DataFrame(comparacion)
 
-    print("\n📊 TABLA COMPARATIVA COMPLETA:")
+    print("\n TABLA COMPARATIVA COMPLETA:")
     print("=" * 100)
     print(df_comparacion.to_string(index=False))
 
     # Guardar comparación
     df_comparacion.to_csv('/content/drive/MyDrive/Tesis_Final/Comparacion_Validacion_Cruzada.csv', index=False)
-    print("\n💾 Comparación guardada en: /content/drive/MyDrive/Tesis_Final/Comparacion_Validacion_Cruzada.csv")
+    print("\n Comparación guardada en: /content/drive/MyDrive/Tesis_Final/Comparacion_Validacion_Cruzada.csv")
 
     # ====================================================
     # 6. GRÁFICO COMPARATIVO
     # ====================================================
-    print("\n📊 Generando gráfico comparativo...")
+    print("\n Generando gráfico comparativo...")
 
     fig, axes = plt.subplots(2, 2, figsize=(14, 10))
 
@@ -6971,9 +6971,9 @@ if __name__ == "__main__":
     plt.show()
 
     print("\n" + "=" * 80)
-    print("✅ VALIDACIÓN CRUZADA COMPLETADA")
+    print(" VALIDACIÓN CRUZADA COMPLETADA")
     print("=" * 80)
-    print("\n📁 Resultados guardados en:")
+    print("\n Resultados guardados en:")
     print(f"   • Paranaguá CON GMM: {CONFIG_PARANAGUA['output_dir']}")
     print(f"   • Paranaguá SIN GMM: {CONFIG_PARANAGUA_SIN_GMM['output_dir']}")
     print(f"   • Validación CON GMM: {CONFIG_VALIDACION_CON_GMM['output_dir']}")
@@ -7444,7 +7444,7 @@ class AnalisisCasosCorreccionAgua:
         # Ordenar por R² medio
         casos_ranking.sort(key=lambda x: x['R²_medio'], reverse=True)
 
-        print("\n🏆 Ranking de casos por R² promedio (Modelos ML):")
+        print("\n Ranking de casos por R² promedio (Modelos ML):")
         print("-" * 70)
         print(f"{'Posición':<8} {'Caso':<35} {'R² Medio':<12} {'RMSE Medio (m)':<15}")
         print("-" * 70)
@@ -7503,7 +7503,7 @@ resultados_casos = analisis_casos.ejecutar_casos()
 analisis_casos.mostrar_comparacion_casos()
 
 print("\n" + "="*100)
-print(" " * 40 + "✅ ANÁLISIS COMPLETADO")
+print(" " * 40 + " ANÁLISIS COMPLETADO")
 print("="*100)
 
 """demora mucho"""
@@ -8177,7 +8177,7 @@ for caso_name, caso_metricas in metricas_finales.items():
             mejor_caso_final = caso_name
 
 if mejor_caso_final:
-    print(f"\n✅ MEJOR CASO RECOMENDADO: {mejor_caso_final.upper()}")
+    print(f"\n MEJOR CASO RECOMENDADO: {mejor_caso_final.upper()}")
     print(f"   • R² promedio (RF, GB, XGB): {mejor_r2_promedio:.4f}")
 
     if mejor_caso_final == 'caso_5':
