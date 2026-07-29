@@ -7253,7 +7253,7 @@ class AnalisisCasosCorreccionAgua:
                         print(df_results)
 
             except Exception as e:
-                print(f"\n❌ Error en caso {caso}: {e}")
+                print(f"\n Error en caso {caso}: {e}")
                 self.resultados_casos[f'caso_{caso}'] = {'error': str(e)}
 
         return self.resultados_casos
@@ -7403,7 +7403,7 @@ class AnalisisCasosCorreccionAgua:
     def _recomendar_mejor_caso(self, metricas_por_caso, modelos_ml):
         """Recomienda el mejor caso basado en R² promedio de modelos ML"""
         print("\n" + "="*100)
-        print(" " * 35 + "🎯 RECOMENDACIÓN DEL MEJOR CASO")
+        print(" " * 35 + " RECOMENDACIÓN DEL MEJOR CASO")
         print("="*100)
 
         casos_ranking = []
@@ -7457,7 +7457,7 @@ class AnalisisCasosCorreccionAgua:
 
         if casos_ranking:
             mejor_caso = casos_ranking[0]
-            print(f"\n✅ MEJOR CASO RECOMENDADO: {mejor_caso['nombre']}")
+            print(f"\n MEJOR CASO RECOMENDADO: {mejor_caso['nombre']}")
             print(f"   • R² promedio: {mejor_caso['R²_medio']:.4f}")
             if not np.isnan(mejor_caso['RMSE_medio']):
                 print(f"   • RMSE promedio: {mejor_caso['RMSE_medio']:.4f} m")
@@ -7478,7 +7478,7 @@ class AnalisisCasosCorreccionAgua:
             if len(casos_ranking) > 1:
                 segundo_caso = casos_ranking[1]
                 mejora = (mejor_caso['R²_medio'] - segundo_caso['R²_medio']) * 100
-                print(f"\n📊 Mejora respecto al segundo mejor: +{mejora:.2f}% en R²")
+                print(f"\n Mejora respecto al segundo mejor: +{mejora:.2f}% en R²")
 
 
 # ====================================================
