@@ -6786,7 +6786,7 @@ if __name__ == "__main__":
                       datetime.now().strftime('%Y%m%d_%H%M%S'),
     })
 
-    print("\n📊 Validando modelo de Paranaguá (CON GMM) en Antonina...")
+    print("\n Validando modelo de Paranaguá (CON GMM) en Antonina...")
     pipeline_validacion_con = SDBPipeline(CONFIG_VALIDACION_CON_GMM)
     resultados_validacion_con = pipeline_validacion_con.run()
 
@@ -7248,7 +7248,7 @@ class AnalisisCasosCorreccionAgua:
                         # Mejor modelo por R²
                         mejor_modelo = df_metricas['R2'].idxmax()
                         mejor_r2 = df_metricas.loc[mejor_modelo, 'R2']
-                        print(f"\n🏆 Mejor modelo: {mejor_modelo} (R² = {mejor_r2:.4f})")
+                        print(f"\n Mejor modelo: {mejor_modelo} (R² = {mejor_r2:.4f})")
                     else:
                         print(df_results)
 
@@ -7304,7 +7304,7 @@ class AnalisisCasosCorreccionAgua:
 
         # Tabla de RMSE
         print("\n" + "="*100)
-        print("📊 TABLA COMPARATIVA - RMSE (m) [menor es mejor]")
+        print(" TABLA COMPARATIVA - RMSE (m) [menor es mejor]")
         print("="*100)
 
         # Cabecera
@@ -7330,7 +7330,7 @@ class AnalisisCasosCorreccionAgua:
 
         # Tabla de R²
         print("\n" + "="*100)
-        print("📈 TABLA COMPARATIVA - R² [mayor es mejor]")
+        print(" TABLA COMPARATIVA - R² [mayor es mejor]")
         print("="*100)
 
         print(header)
@@ -7351,7 +7351,7 @@ class AnalisisCasosCorreccionAgua:
 
         # Resumen por caso (promedio modelos ML)
         print("\n" + "="*100)
-        print("📋 RESUMEN POR CASO (Promedio de modelos ML: RF, GB, XGB)")
+        print(" RESUMEN POR CASO (Promedio de modelos ML: RF, GB, XGB)")
         print("="*100)
 
         modelos_ml = ['RF', 'GB', 'XGB']
